@@ -49,6 +49,10 @@ Output: binding affinity (kcal/mol) and redock RMSD vs the crystal pose.
 
 See [SETUP.md](SETUP.md) for installation.
 
+## About the author
+
+This project is built by a practitioner-researcher with a direct personal stake in the science. The author actively follows reverse-ageing protocols — including hormonal therapies and peptides — and approaches this work not just computationally but from lived, hands-on experience with the interventions it studies.
+
 ## License
 
 MIT
