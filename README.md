@@ -1,5 +1,7 @@
 # foldock
 
+> **Why I built this.** I'm not just studying reverse-ageing — I'm living it. I follow reverse-ageing protocols (hormonal therapies, peptides, Bryan Johnson's Blueprint), and I track the field's clinical frontier — like David Sinclair's epigenetic-reprogramming research as it advances through FDA trials. That obsession is what pushed me to stop only *reading* about longevity science and start *building* with it. After working through the books and the papers, I wanted to probe the biology of ageing with my own hands — so I started building tools. This is one of them.
+
 A small, reproducible **structure-based drug–target docking and validation** pipeline:
 **AlphaFold2 structure prediction → binding-pocket docking (AutoDock Vina) → redocking RMSD validation.**
 
@@ -48,12 +50,6 @@ Output: binding affinity (kcal/mol) and redock RMSD vs the crystal pose.
 - **Rendering:** PyMOL (open source)
 
 See [SETUP.md](SETUP.md) for installation.
-
-## About the author
-
-This project is built by a practitioner-researcher with a direct personal stake in the science. The author actively follows reverse-ageing protocols — including hormonal therapies and peptides — and approaches this work not just computationally but from lived, hands-on experience with the interventions it studies.
-
-Her personal practice draws on established longevity regimens such as Bryan Johnson's Blueprint protocol, and she closely tracks the clinical frontier of the field — including David Sinclair's epigenetic-reprogramming research as it advances through FDA trials.
 
 ## License
 
