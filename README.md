@@ -53,6 +53,8 @@ See [SETUP.md](SETUP.md) for installation.
 
 This project is built by a practitioner-researcher with a direct personal stake in the science. The author actively follows reverse-ageing protocols — including hormonal therapies and peptides — and approaches this work not just computationally but from lived, hands-on experience with the interventions it studies.
 
+Her personal practice draws on established longevity regimens such as Bryan Johnson's Blueprint protocol, and she closely tracks the clinical frontier of the field — including David Sinclair's epigenetic-reprogramming research as it advances through FDA trials.
+
 ## License
 
 MIT
