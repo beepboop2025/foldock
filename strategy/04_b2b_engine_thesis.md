@@ -34,7 +34,7 @@ The result is slow, redundant, un-trustworthy in-house tooling at hundreds of in
 | 3 | **Validate** | automated redocking RMSD + confidence score on every result (the trust layer) | ✅ validated |
 | 4 | **Variant-triage** | classify a variant as pocket / buried-stability / allosteric → route to the right method | ✅ validated |
 | 5 | **Cancer-safety filter** | GREEN/AMBER/RED oncogenic-risk verdict (mechanism + target oncogene/TSG direction + off-target) | ✅ built |
-| 6 | **Geroscience knowledge layer** | curated ageing targets (GenAge/CellAge), pathways, telomere/senescence maps | 🔜 next |
+| 6 | **Geroscience knowledge layer** | curated ageing-target DB (hallmarks, pathways, oncogene/TSG class) served via `/targets` | ✅ built |
 
 **Proof points already in hand (local, CPU-only):**
 - mTOR FRB fold, mean pLDDT 92.8.

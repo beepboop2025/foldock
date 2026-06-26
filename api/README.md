@@ -23,6 +23,8 @@ micromamba run -n dock uvicorn api.main:app --port 8000
 | GET  | `/targets` | curated geroscience target layer (the domain moat) |
 | POST | `/dock`    | redock a ligand; returns affinity + validation score |
 | POST | `/cancer-safety` | longevity-oncology guardrail; GREEN/AMBER/RED oncogenic-risk verdict |
+| POST | `/screen`  | virtual-screen the geroprotector library vs a target pocket; ranked hits + per-hit cancer-safety |
+| GET  | `/`        | web dashboard (UI over the endpoints above) |
 
 ## Example — `/dock`
 
@@ -58,3 +60,13 @@ curl -s -X POST localhost:8000/cancer-safety -H 'content-type: application/json'
 Multi-signal risk model (mechanism + target oncogene/TSG direction + optional off-target
 docking). It correctly GREENs rapamycin/navitoclax/metformin/imetelstat, REDs the
 telomerase-activation trap / p53-inhibition / IGF-1 boosting, and AMBERs NAD+ and NRF2.
+
+## Example — `/screen`
+
+```bash
+curl -s -X POST localhost:8000/screen -H 'content-type: application/json' \
+  -d '{"pdb_id":"4QNQ","ref_ligand":"1XJ","chain":"A"}'
+```
+
+Docks the curated geroprotector library into the target pocket, ranks by affinity, and
+attaches a cancer-safety verdict to every hit (discovery + guardrail in one call).

@@ -1,0 +1,252 @@
+[
+  {
+    "symbol": "MTOR",
+    "name": "Mechanistic target of rapamycin",
+    "pathway": "mTOR signaling",
+    "hallmark": "nutrient sensing",
+    "role": "Ser/Thr kinase integrating nutrient, energy and growth signals",
+    "cancer_gene_class": "oncogene",
+    "pdb": "4JSN",
+    "example_drug": "rapamycin"
+  },
+  {
+    "symbol": "SIRT1",
+    "name": "Sirtuin 1",
+    "pathway": "NAD+-dependent deacetylation",
+    "hallmark": "nutrient sensing",
+    "role": "Nuclear deacetylase regulating metabolism, stress resistance and longevity",
+    "cancer_gene_class": "none",
+    "pdb": "4I5I",
+    "example_drug": "resveratrol"
+  },
+  {
+    "symbol": "SIRT2",
+    "name": "Sirtuin 2",
+    "pathway": "NAD+-dependent deacetylation",
+    "hallmark": "nutrient sensing",
+    "role": "Cytosolic/mitotic deacetylase controlling tubulin and metabolic enzymes",
+    "cancer_gene_class": "none",
+    "pdb": "4L3O",
+    "example_drug": "AGK2"
+  },
+  {
+    "symbol": "SIRT3",
+    "name": "Sirtuin 3",
+    "pathway": "Mitochondrial NAD+-dependent deacetylation",
+    "hallmark": "mitochondrial dysfunction",
+    "role": "Mitochondrial deacetylase regulating oxidative metabolism and ATP production",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "3GLR",
+    "example_drug": "honokiol"
+  },
+  {
+    "symbol": "PRKAA1",
+    "name": "AMP-activated protein kinase catalytic subunit alpha-1",
+    "pathway": "AMPK signaling",
+    "hallmark": "nutrient sensing",
+    "role": "Cellular energy sensor kinase that promotes catabolic pathways",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "4CFE",
+    "example_drug": "metformin"
+  },
+  {
+    "symbol": "BCL2L1",
+    "name": "BCL2-like 1 (Bcl-xL)",
+    "pathway": "Intrinsic apoptosis",
+    "hallmark": "cellular senescence",
+    "role": "Anti-apoptotic Bcl-2 family protein that blocks cytochrome c release",
+    "cancer_gene_class": "oncogene",
+    "pdb": "1MAZ",
+    "example_drug": "navitoclax"
+  },
+  {
+    "symbol": "NLRP3",
+    "name": "NLR family pyrin domain containing 3",
+    "pathway": "Inflammasome signaling",
+    "hallmark": "altered intercellular communication",
+    "role": "Inflammasome sensor driving IL-1\u03b2/IL-18 maturation and pyroptosis",
+    "cancer_gene_class": "none",
+    "pdb": "6NPY",
+    "example_drug": "MCC950"
+  },
+  {
+    "symbol": "KEAP1",
+    "name": "Kelch-like ECH-associated protein 1",
+    "pathway": "Nrf2 antioxidant response",
+    "hallmark": "loss of proteostasis",
+    "role": "E3 ligase adaptor that represses Nrf2 until oxidative stress occurs",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "4IQK",
+    "example_drug": "sulforaphane"
+  },
+  {
+    "symbol": "FOXO3",
+    "name": "Forkhead box O3",
+    "pathway": "PI3K-AKT-FOXO signaling",
+    "hallmark": "nutrient sensing",
+    "role": "Transcription factor promoting stress resistance, autophagy and longevity",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "2K86",
+    "example_drug": "butein"
+  },
+  {
+    "symbol": "KL",
+    "name": "Klotho",
+    "pathway": "FGF23/calcium-phosphate homeostasis",
+    "hallmark": "altered intercellular communication",
+    "role": "Anti-aging co-receptor and circulating hormone regulating mineral metabolism",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "5W21",
+    "example_drug": "recombinant \u03b1-klotho"
+  },
+  {
+    "symbol": "TERT",
+    "name": "Telomerase reverse transcriptase",
+    "pathway": "Telomere maintenance",
+    "hallmark": "telomere attrition",
+    "role": "Catalytic subunit of telomerase that adds TTAGGG repeats",
+    "cancer_gene_class": "telomere_maintenance",
+    "pdb": "7TRD",
+    "example_drug": "imetelstat"
+  },
+  {
+    "symbol": "TERF1",
+    "name": "Telomeric repeat-binding factor 1",
+    "pathway": "Shelterin/telomere length regulation",
+    "hallmark": "telomere attrition",
+    "role": "Double-stranded telomeric DNA-binding shelterin component",
+    "cancer_gene_class": "telomere_maintenance",
+    "pdb": "1W0T",
+    "example_drug": "telomestatin"
+  },
+  {
+    "symbol": "POT1",
+    "name": "Protection of telomeres 1",
+    "pathway": "Shelterin/single-stranded telomere protection",
+    "hallmark": "telomere attrition",
+    "role": "Binds the 3' ss telomeric overhang to prevent ATR signaling",
+    "cancer_gene_class": "telomere_maintenance",
+    "pdb": "1XJV",
+    "example_drug": "telomestatin"
+  },
+  {
+    "symbol": "TP53",
+    "name": "Tumor protein p53",
+    "pathway": "DNA damage response / cell cycle control",
+    "hallmark": "cellular senescence",
+    "role": "Guardian of the genome; induces cell-cycle arrest, senescence or apoptosis",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "1TUP",
+    "example_drug": "APR-246"
+  },
+  {
+    "symbol": "IGF1R",
+    "name": "Insulin-like growth factor 1 receptor",
+    "pathway": "IGF-1/PI3K-AKT signaling",
+    "hallmark": "nutrient sensing",
+    "role": "Receptor tyrosine kinase transducing growth, survival and metabolic signals",
+    "cancer_gene_class": "oncogene",
+    "pdb": "1K3A",
+    "example_drug": "linsitinib"
+  },
+  {
+    "symbol": "NAMPT",
+    "name": "Nicotinamide phosphoribosyltransferase",
+    "pathway": "NAD+ salvage biosynthesis",
+    "hallmark": "nutrient sensing",
+    "role": "Rate-limiting enzyme of the NAD+ salvage pathway",
+    "cancer_gene_class": "oncogene",
+    "pdb": "4WQ6",
+    "example_drug": "FK866"
+  },
+  {
+    "symbol": "GDF11",
+    "name": "Growth differentiation factor 11",
+    "pathway": "TGF-\u03b2 superfamily signaling",
+    "hallmark": "altered intercellular communication",
+    "role": "Circulating TGF-\u03b2 family ligand implicated in tissue rejuvenation",
+    "cancer_gene_class": "none",
+    "pdb": "5UHM",
+    "example_drug": "follistatin"
+  },
+  {
+    "symbol": "RPTOR",
+    "name": "Regulatory-associated protein of mTOR (Raptor, mTORC1)",
+    "pathway": "mTORC1 signaling",
+    "hallmark": "nutrient sensing",
+    "role": "Scaffold subunit of mTORC1 recruiting TOS-motif substrates",
+    "cancer_gene_class": "none",
+    "pdb": "6BCU",
+    "example_drug": "everolimus"
+  },
+  {
+    "symbol": "SIRT6",
+    "name": "Sirtuin 6",
+    "pathway": "NAD+-dependent deacetylation/ADP-ribosylation",
+    "hallmark": "epigenetic alteration",
+    "role": "Nuclear sirtuin regulating DNA repair, metabolism and genomic stability",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "3ZG6",
+    "example_drug": "MDL-801"
+  },
+  {
+    "symbol": "TFEB",
+    "name": "Transcription factor EB",
+    "pathway": "Lysosomal biogenesis / autophagy",
+    "hallmark": "loss of proteostasis",
+    "role": "Master transcriptional regulator of autophagy-lysosome biogenesis",
+    "cancer_gene_class": "none",
+    "pdb": "7Y62",
+    "example_drug": "urolithin A"
+  },
+  {
+    "symbol": "RPS6KB1",
+    "name": "Ribosomal protein S6 kinase B1 (S6K1)",
+    "pathway": "mTORC1 downstream signaling",
+    "hallmark": "nutrient sensing",
+    "role": "Downstream kinase controlling protein synthesis, growth and metabolism",
+    "cancer_gene_class": "oncogene",
+    "pdb": "4RLO",
+    "example_drug": "PF-4708671"
+  },
+  {
+    "symbol": "CDKN2A",
+    "name": "Cyclin-dependent kinase inhibitor 2A (p16INK4a)",
+    "pathway": "RB/E2F cell-cycle control",
+    "hallmark": "cellular senescence",
+    "role": "CDK4/6 inhibitor that enforces senescence-associated cell-cycle arrest",
+    "cancer_gene_class": "tumor_suppressor",
+    "pdb": "1A5E",
+    "example_drug": "palbociclib"
+  },
+  {
+    "symbol": "PARP1",
+    "name": "Poly(ADP-ribose) polymerase 1",
+    "pathway": "DNA damage response / PARylation",
+    "hallmark": "genomic instability",
+    "role": "DNA damage sensor and PARylation enzyme in chromatin remodeling",
+    "cancer_gene_class": "none",
+    "pdb": "4DQY",
+    "example_drug": "olaparib"
+  },
+  {
+    "symbol": "SIRT5",
+    "name": "Sirtuin 5",
+    "pathway": "NAD+-dependent lysine desuccinylation/demalonylation",
+    "hallmark": "mitochondrial dysfunction",
+    "role": "Mitochondrial sirtuin regulating metabolic enzyme post-translational modifications",
+    "cancer_gene_class": "none",
+    "pdb": "3RIY",
+    "example_drug": "MC3482"
+  },
+  {
+    "symbol": "FOXM1",
+    "name": "Forkhead box M1",
+    "pathway": "Cell-cycle transcription",
+    "hallmark": "cellular senescence",
+    "role": "Pro-proliferative transcription factor that antagonizes senescence",
+    "cancer_gene_class": "oncogene",
+    "pdb": "3G73",
+    "example_drug": "FDI-6"
+  }
+]

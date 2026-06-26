@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>foldock — engine for reverse-ageing science</title>
+  <style>
+    :root {
+      --accent: #5b2a86;
+      --accent-light: #7c4da3;
+      --bg: #f7f7f9;
+      --card: #ffffff;
+      --text: #1f1f2e;
+      --muted: #5e5e72;
+      --border: #e2e2ea;
+      --success: #1b7f4b;
+      --danger: #b3261e;
+      --warn: #c58500;
+      --shadow: 0 2px 8px rgba(31, 31, 46, 0.06);
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: #fff;
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      margin: 0.35rem 0 0;
+      opacity: 0.9;
+      font-size: 1rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      margin: 0 0 1rem;
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 2px solid var(--border);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    tbody td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: #faf8fc; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(91, 42, 134, 0.12);
+    }
+
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.65rem 1.25rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.15s, transform 0.05s;
+    }
+
+    button:hover { background: var(--accent-light); }
+    button:active { transform: translateY(1px); }
+    button:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    .spinner {
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .result {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #f9f9fb;
+      border: 1px solid var(--border);
+    }
+
+    .result-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .result-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0.25rem 0 0;
+    }
+
+    .verdict {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .badge-green { background: #e6f4ec; color: var(--success); }
+    .badge-red { background: #fce9e7; color: var(--danger); }
+    .badge-amber { background: #fff4e0; color: var(--warn); }
+
+    .check { color: var(--success); }
+    .cross { color: var(--danger); }
+
+    .error {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #fce9e7;
+      color: var(--danger);
+      border: 1px solid #f2c4c0;
+    }
+
+    .signal-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 0;
+    }
+
+    .signal-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+
+    .signal-list li:last-child { border-bottom: none; }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+    }
+
+    .pill-green { background: #e6f4ec; color: var(--success); }
+    .pill-red { background: #fce9e7; color: var(--danger); }
+    .pill-amber { background: #fff4e0; color: var(--warn); }
+
+    .caveats {
+      margin-top: 0.75rem;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .empty { color: var(--muted); font-style: italic; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>foldock</h1>
+      <p>engine for reverse-ageing science</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="card" id="targets-section">
+      <h2>Targets</h2>
+      <p class="hint">Curated geroscience target layer — the domain moat.</p>
+      <div id="targets-table">Loading targets…</div>
+    </section>
+
+    <section class="card" id="dock-section">
+      <h2>Dock & Validate</h2>
+      <p class="hint">Redock a ligand and return binding affinity plus a redock-validation score.</p>
+      <div class="form-row">
+        <div>
+          <label for="dock-pdb">PDB ID</label>
+          <input id="dock-pdb" type="text" maxlength="4" placeholder="1FKB" pattern="[A-Za-z0-9]{4}" title="4-character PDB ID" />
+        </div>
+        <div>
+          <label for="dock-ligand">Ligand resname</label>
+          <input id="dock-ligand" type="text" maxlength="3" placeholder="RAP" pattern="[A-Za-z0-9]{1,3}" title="1-3 character residue name" />
+        </div>
+        <div>
+          <label for="dock-chain">Chain</label>
+          <input id="dock-chain" type="text" maxlength="1" placeholder="A" pattern="[A-Za-z0-9]" title="Single-character chain ID" />
+        </div>
+      </div>
+      <button id="dock-btn" onclick="runDock()">
+        <span id="dock-spinner" class="spinner" style="display:none;"></span>
+        <span id="dock-btn-text">Dock</span>
+      </button>
+      <div id="dock-result"></div>
+    </section>
+
+    <section class="card" id="safety-section">
+      <h2>Cancer-safety filter</h2>
+      <p class="hint">Longevity-oncology guardrail: score a proposed intervention for oncogenic risk.</p>
+      <div class="form-row">
+        <div>
+          <label for="safety-target">Target symbol</label>
+          <input id="safety-target" type="text" placeholder="TERT" pattern="[A-Za-z0-9]{1,10}" title="Gene symbol" />
+        </div>
+        <div>
+          <label for="safety-mechanism">Mechanism</label>
+          <input id="safety-mechanism" type="text" placeholder="telomerase_activation" pattern="[A-Za-z0-9_]{1,40}" title="Mechanism class" />
+        </div>
+        <div>
+          <label for="safety-direction">Direction</label>
+          <select id="safety-direction">
+            <option value="activate">activate</option>
+            <option value="inhibit" selected>inhibit</option>
+          </select>
+        </div>
+      </div>
+      <button id="safety-btn" onclick="runSafety()">
+        <span id="safety-spinner" class="spinner" style="display:none;"></span>
+        <span id="safety-btn-text">Assess</span>
+      </button>
+      <div id="safety-result"></div>
+    </section>
+  </main>
+
+  <script>
+    function setLoading(btnId, spinnerId, textId, text, isLoading) {
+      const btn = document.getElementById(btnId);
+      const spinner = document.getElementById(spinnerId);
+      const label = document.getElementById(textId);
+      btn.disabled = isLoading;
+      spinner.style.display = isLoading ? 'inline-block' : 'none';
+      label.textContent = isLoading ? text : text.replace(/ing…/, '');
+    }
+
+    function showError(elId, status, message) {
+      document.getElementById(elId).innerHTML =
+        `<div class="error"><strong>Error ${status || ''}</strong>${status ? ':' : ''} ${escapeHtml(message || 'Unknown error')}</div>`;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    async function loadTargets() {
+      const container = document.getElementById('targets-table');
+      try {
+        const res = await fetch('/targets');
+        if (!res.ok) throw new Error(await res.text());
+        const data = await res.json();
+        const targets = data.targets || [];
+        if (!targets.length) {
+          container.innerHTML = '<p class="empty">No targets returned.</p>';
+          return;
+        }
+        const rows = targets.map(t => `
+          <tr>
+            <td><strong>${escapeHtml(t.symbol)}</strong></td>
+            <td>${escapeHtml(t.name)}</td>
+            <td>${escapeHtml(t.pathway)}</td>
+            <td>${escapeHtml(t.role)}</td>
+            <td>${escapeHtml(t.example_drug)}</td>
+          </tr>
+        `).join('');
+        container.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Pathway</th>
+                <th>Role</th>
+                <th>Example drug</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        `;
+      } catch (err) {
+        container.innerHTML = `<div class="error">Could not load targets: ${escapeHtml(err.message)}</div>`;
+      }
+    }
+
+    async function runDock() {
+      const pdb = document.getElementById('dock-pdb').value.trim().toUpperCase();
+      const ligand = document.getElementById('dock-ligand').value.trim().toUpperCase();
+      const chain = document.getElementById('dock-chain').value.trim().toUpperCase();
+      const out = document.getElementById('dock-result');
+      out.innerHTML = '';
+
+      if (!/^[A-Za-z0-9]{4}$/.test(pdb)) { showError('dock-result', 400, 'PDB ID must be 4 alphanumeric characters.'); return; }
+      if (!/^[A-Za-z0-9]{1,3}$/.test(ligand)) { showError('dock-result', 400, 'Ligand resname must be 1-3 alphanumeric characters.'); return; }
+      if (!/^[A-Za-z0-9]$/.test(chain)) { showError('dock-result', 400, 'Chain must be a single alphanumeric character.'); return; }
+
+      setLoading('dock-btn', 'dock-spinner', 'dock-btn-text', 'Docking…', true);
+      try {
+        const res = await fetch('/dock', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pdb_id: pdb, ligand_resname: ligand, chain: chain })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || JSON.stringify(data));
+
+        const passed = data.validation && data.validation.passed;
+        const icon = passed
+          ? '<span class="check">✔</span>'
+          : '<span class="cross">✖</span>';
+        const badgeClass = passed ? 'badge-green' : 'badge-red';
+        const verdictText = (data.validation && data.validation.verdict) || (passed ? 'Passed' : 'Failed');
+
+        out.innerHTML = `
+          <div class="result">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;">
+              <div>
+                <div class="result-label">Binding affinity</div>
+                <div class="result-value">${data.binding_affinity_kcal_mol !== null ? data.binding_affinity_kcal_mol.toFixed(2) + ' kcal/mol' : 'N/A'}</div>
+              </div>
+              <div>
+                <div class="result-label">Redock RMSD</div>
+                <div class="result-value">${data.redock_rmsd_angstrom !== null ? data.redock_rmsd_angstrom.toFixed(2) + ' Å' : 'N/A'}</div>
+              </div>
+              <div>
+                <div class="result-label">Threshold</div>
+                <div class="result-value">${data.validation && data.validation.threshold_angstrom ? data.validation.threshold_angstrom + ' Å' : '2.0 Å'}</div>
+              </div>
+            </div>
+            <div class="verdict ${badgeClass}">${icon} ${escapeHtml(verdictText)}</div>
+          </div>
+        `;
+      } catch (err) {
+        showError('dock-result', '', err.message);
+      } finally {
+        setLoading('dock-btn', 'dock-spinner', 'dock-btn-text', 'Docking…', false);
+      }
+    }
+
+    async function runSafety() {
+      const target = document.getElementById('safety-target').value.trim();
+      const mechanism = document.getElementById('safety-mechanism').value.trim();
+      const direction = document.getElementById('safety-direction').value;
+      const out = document.getElementById('safety-result');
+      out.innerHTML = '';
+
+      if (!/^[A-Za-z0-9]{1,10}$/.test(target)) { showError('safety-result', 400, 'Target symbol must be 1-10 alphanumeric characters.'); return; }
+      if (!/^[A-Za-z0-9_]{1,40}$/.test(mechanism)) { showError('safety-result', 400, 'Mechanism must be 1-40 alphanumeric/underscore characters.'); return; }
+
+      setLoading('safety-btn', 'safety-spinner', 'safety-btn-text', 'Assessing…', true);
+      try {
+        const res = await fetch('/cancer-safety', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target_symbol: target, mechanism: mechanism, direction: direction })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || JSON.stringify(data));
+
+        const level = data.cancer_safety;
+        const badgeClass = level === 'GREEN' ? 'badge-green' : level === 'RED' ? 'badge-red' : 'badge-amber';
+        const pillClass = level === 'GREEN' ? 'pill-green' : level === 'RED' ? 'pill-red' : 'pill-amber';
+
+        const signals = (data.signals || []).map(s => `
+          <li>
+            <span class="pill ${s.level === 'GREEN' ? 'pill-green' : s.level === 'RED' ? 'pill-red' : 'pill-amber'}">${escapeHtml(s.level)}</span>
+            <strong>${escapeHtml(s.signal)}</strong> — ${escapeHtml(s.detail)}
+          </li>
+        `).join('');
+
+        const caveats = (data.caveats || []).map(c => `<li>${escapeHtml(c)}</li>`).join('');
+
+        out.innerHTML = `
+          <div class="result">
+            <div class="result-label">Verdict</div>
+            <div class="verdict ${badgeClass}">${escapeHtml(level)}</div>
+            <div style="margin-top:0.75rem;">${escapeHtml(data.verdict)}</div>
+            <div style="margin-top:0.75rem;"><span class="result-label">Risk score</span> <strong>${data.risk_score}</strong></div>
+
+            <div style="margin-top:1rem;"><span class="result-label">Signals</span></div>
+            <ul class="signal-list">${signals || '<li class="empty">No signals returned.</li>'}</ul>
+
+            <div style="margin-top:1rem;"><span class="result-label">Caveats</span></div>
+            <ul class="caveats">${caveats || '<li class="empty">No caveats returned.</li>'}</ul>
+          </div>
+        `;
+      } catch (err) {
+        showError('safety-result', '', err.message);
+      } finally {
+        setLoading('safety-btn', 'safety-spinner', 'safety-btn-text', 'Assessing…', false);
+      }
+    }
+
+    loadTargets();
+  </script>
+</body>
+</html>

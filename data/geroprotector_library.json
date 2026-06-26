@@ -1,0 +1,7 @@
+[
+  {"name":"Quercetin",   "smiles":"O=c1c(O)c(-c2ccc(O)c(O)c2)oc2cc(O)cc(O)c12", "target":"BCL2L1","mechanism":"senolytic","direction":"inhibit"},
+  {"name":"Fisetin",     "smiles":"O=c1c(O)c(-c2ccc(O)c(O)c2)oc2cc(O)ccc12",    "target":"BCL2L1","mechanism":"senolytic","direction":"inhibit"},
+  {"name":"Resveratrol", "smiles":"Oc1ccc(/C=C/c2cc(O)cc(O)c2)cc1",             "target":"SIRT1","mechanism":"sirtuin_activation","direction":"activate"},
+  {"name":"Metformin",   "smiles":"CN(C)C(=N)N=C(N)N",                          "target":"PRKAA1","mechanism":"ampk_activation","direction":"activate"},
+  {"name":"Curcumin",    "smiles":"O=C(/C=C/c1ccc(O)c(OC)c1)CC(=O)/C=C/c1ccc(O)c(OC)c1","target":"KEAP1","mechanism":"nrf2_activation","direction":"inhibit"}
+]
