@@ -22,8 +22,9 @@ micromamba run -n dock uvicorn api.main:app --port 8000
 | GET  | `/health`  | liveness |
 | GET  | `/targets` | curated geroscience target layer (the domain moat) |
 | POST | `/dock`    | redock a ligand; returns affinity + validation score |
+| POST | `/cancer-safety` | longevity-oncology guardrail; GREEN/AMBER/RED oncogenic-risk verdict |
 
-## Example
+## Example — `/dock`
 
 ```bash
 curl -s -X POST localhost:8000/dock -H 'content-type: application/json' \
@@ -37,3 +38,23 @@ curl -s -X POST localhost:8000/dock -H 'content-type: application/json' \
   "validation": {"passed": true, "verdict": "reproduces crystal pose — affinity is trustworthy"}
 }
 ```
+
+## Example — `/cancer-safety`
+
+```bash
+curl -s -X POST localhost:8000/cancer-safety -H 'content-type: application/json' \
+  -d '{"target_symbol":"TERT","mechanism":"telomerase_activation","direction":"activate"}'
+```
+
+```json
+{
+  "cancer_safety": "RED",
+  "risk_score": 90,
+  "verdict": "BLOCK — mechanism/target pushes a known cancer-promoting direction ...",
+  "caveats": ["Docking gives binding affinity, not agonist-vs-antagonist direction ..."]
+}
+```
+
+Multi-signal risk model (mechanism + target oncogene/TSG direction + optional off-target
+docking). It correctly GREENs rapamycin/navitoclax/metformin/imetelstat, REDs the
+telomerase-activation trap / p53-inhibition / IGF-1 boosting, and AMBERs NAD+ and NRF2.

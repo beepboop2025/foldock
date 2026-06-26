@@ -16,6 +16,8 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
+from api.cancer_safety import assess as cancer_safety_assess
+
 VINA = os.environ.get("VINA", "vina")
 OBABEL = os.environ.get("OBABEL", "obabel")
 OBRMS = os.environ.get("OBRMS", "obrms")
@@ -41,6 +43,15 @@ TARGETS = [
     {"symbol": "TP53",   "name": "p53",                    "pathway": "tumor suppression",  "role": "cancer-safety anchor",                  "pdb": "1TUP", "example_drug": "nutlin (research)"},
     {"symbol": "MTHFR",  "name": "MTHFR",                  "pathway": "methylation",        "role": "vascular ageing / C677T variant",       "pdb": "6FCX", "example_drug": "riboflavin / methylfolate"},
 ]
+
+
+class SafetyRequest(BaseModel):
+    target_symbol: str = Field(..., pattern=r"^[A-Za-z0-9]{1,10}$", examples=["TERT"],
+                               description="gene symbol of the intended target")
+    mechanism: str = Field(..., pattern=r"^[A-Za-z0-9_]{1,40}$", examples=["telomerase_activation"],
+                           description="mechanism class (e.g. mtor_inhibition, telomerase_activation, senolytic)")
+    direction: str = Field("inhibit", pattern=r"^(activate|inhibit)$",
+                           description="how the intervention acts on the target")
 
 
 class DockRequest(BaseModel):
@@ -72,6 +83,15 @@ def health():
 def targets():
     """The curated geroscience target layer — the domain moat."""
     return {"count": len(TARGETS), "targets": TARGETS}
+
+
+@app.post("/cancer-safety")
+def cancer_safety(req: SafetyRequest):
+    """
+    The longevity-oncology guardrail: score a proposed intervention for oncogenic
+    risk (GREEN/AMBER/RED) from curated mechanism + target-direction knowledge.
+    """
+    return cancer_safety_assess(req.target_symbol, req.mechanism, req.direction)
 
 
 @app.post("/dock")

@@ -33,7 +33,7 @@ The result is slow, redundant, un-trustworthy in-house tooling at hundreds of in
 | 2 | **Screen** | dock approved-drug or custom compound libraries → ranked binding affinities | ✅ validated |
 | 3 | **Validate** | automated redocking RMSD + confidence score on every result (the trust layer) | ✅ validated |
 | 4 | **Variant-triage** | classify a variant as pocket / buried-stability / allosteric → route to the right method | ✅ validated |
-| 5 | **Cancer-safety filter** | screen pro-longevity hits for oncogenic risk via the telomere/telomerase axis | 🔜 next |
+| 5 | **Cancer-safety filter** | GREEN/AMBER/RED oncogenic-risk verdict (mechanism + target oncogene/TSG direction + off-target) | ✅ built |
 | 6 | **Geroscience knowledge layer** | curated ageing targets (GenAge/CellAge), pathways, telomere/senescence maps | 🔜 next |
 
 **Proof points already in hand (local, CPU-only):**
