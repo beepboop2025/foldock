@@ -8,7 +8,14 @@ The competitive core. Not for public release.
 - **03_build_prompts.md** — phased prompt library to build the whole product.
 - **AMRITA_master.pdf** — the above, rendered with all figures embedded.
 
-The engine is exposed as a service in `../api/` (FastAPI: `/health`, `/targets`, `/dock` → affinity + validation score).
+The engine is exposed as a service in `../api/` (FastAPI: `/health`, `/targets`, `/dock`, `/cancer-safety`, `/screen`, `/` dashboard).
+
+### Fundraising execution (the non-code path to a raise)
+- **05_advisor_outreach.md** — recruit 1 named scientific advisor (closes the "solo non-PhD" gap). Highest-ROI move.
+- **06_customer_discovery.md** — 5 discovery calls + 1 design partner; Mom-Test script + target list.
+- **07_novel_result_experiment.md** — the ONE result that turns "tool" into "we found something": blind-validation repurposing screen + the ΔΔG-stability variant completion.
+
+*Funding readiness honest estimate: ~35% for pre-seed. The missing 65% is advisor + customer signal + one novel result — not more code.*
 
 ## The wedge (kept out of the public engine repo)
 
