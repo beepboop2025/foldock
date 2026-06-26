@@ -2,10 +2,13 @@
 
 The competitive core. Not for public release.
 
+- **04_b2b_engine_thesis.md** — **PRIMARY GTM:** "the engine for reverse-ageing science" — B2B infrastructure positioning (Schrödinger-for-longevity), 6-module product, institution customer list, pricing, competitive wedge, moat.
 - **01_company.md** — full company map: thesis, the measure→match→prove platform, tech stack, business model, moat, regulatory path, roadmap, risks.
 - **02_pitch_deck.md** — 12-slide pre-seed pitch deck.
 - **03_build_prompts.md** — phased prompt library to build the whole product.
 - **AMRITA_master.pdf** — the above, rendered with all figures embedded.
+
+The engine is exposed as a service in `../api/` (FastAPI: `/health`, `/targets`, `/dock` → affinity + validation score).
 
 ## The wedge (kept out of the public engine repo)
 
